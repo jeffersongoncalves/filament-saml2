@@ -1,0 +1,2 @@
+providers:
+  - JeffersonGoncalves\Filament\Saml2\Saml2ServiceProvider
