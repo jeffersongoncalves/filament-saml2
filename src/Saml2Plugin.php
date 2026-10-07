@@ -6,6 +6,8 @@ use Closure;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\View\PanelsRenderHook;
+use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Route;
@@ -63,10 +65,10 @@ class Saml2Plugin implements Plugin
             $this->getButtonPosition() === 'before'
                 ? PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE
                 : PanelsRenderHook::AUTH_LOGIN_FORM_AFTER,
-            fn (): string => view('filament-saml2::login-buttons', [
+            fn (): View => app(ViewFactory::class)->make('filament-saml2::login-buttons', [
                 'panel' => $panel,
                 'tenants' => $this->getTenants(),
-            ])->render(),
+            ]),
         );
     }
 
