@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create(config('filament-saml2.identities_table', 'saml2_identities'), function (Blueprint $table) {
+            $table->id();
+            $table->morphs('authenticatable');
+            $table->uuid('tenant_uuid');
+            $table->string('name_id');
+            $table->string('email')->nullable();
+            $table->json('saml_attributes')->nullable();
+            $table->timestamps();
+
+            $table->unique(['tenant_uuid', 'name_id']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists(config('filament-saml2.identities_table', 'saml2_identities'));
+    }
+};
