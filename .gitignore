@@ -11,3 +11,5 @@ vendor
 node_modules
 
 .claude/settings.local.json
+composer.verify.json
+composer.verify.lock

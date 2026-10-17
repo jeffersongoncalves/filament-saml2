@@ -10,11 +10,14 @@ use JeffersonGoncalves\Filament\Saml2\Saml2ServiceProvider;
 use JeffersonGoncalves\Filament\Saml2\Tests\Fixtures\TestPanelProvider;
 use JeffersonGoncalves\Filament\Saml2\Tests\Fixtures\User;
 use JeffersonGoncalves\LaravelSaml2\Saml2ServiceProvider as LaravelSaml2ServiceProvider;
+use JeffersonGoncalves\PestPluginDatabaseMigrations\LoadsPackageMigrations;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
+    use LoadsPackageMigrations;
+
     protected function getPackageProviders($app): array
     {
         return [
@@ -45,8 +48,6 @@ abstract class TestCase extends Orchestra
     protected function defineDatabaseMigrations(): void
     {
         $this->loadLaravelMigrations();
-        $this->artisan('migrate')->run();
-
-        (include __DIR__.'/../database/migrations/create_saml2_identities_table.php.stub')->up();
+        $this->loadPackageMigrations(LaravelSaml2ServiceProvider::class, Saml2ServiceProvider::class);
     }
 }
