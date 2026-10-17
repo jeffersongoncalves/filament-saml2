@@ -32,6 +32,7 @@ composer require jeffersongoncalves/filament-saml2:"^1.0"
 Publish and run the migrations (`saml2_tenants` comes from `laravel-saml2`, `saml2_identities` from this plugin):
 
 ```bash
+php artisan vendor:publish --tag="saml2-migrations"
 php artisan vendor:publish --tag="filament-saml2-migrations"
 php artisan migrate
 ```
