@@ -2,6 +2,10 @@
 
 All notable changes to `filament-saml2` will be documented in this file.
 
+## 1.0.1 - 2026-10-21
+
+- Pass a view-string to the login buttons render hook.
+
 ## 1.0.0 - 2026-10-07
 
 First release of `filament-saml2` for **Filament v3**.
@@ -20,6 +24,7 @@ First release of `filament-saml2` for **Filament v3**.
 
 ```bash
 composer require jeffersongoncalves/filament-saml2:"^1.0"
+
 
 ```
 ## Unreleased
